@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElderBrainTV Description Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <main>
+        <h1>Description Generator</h1>
+        <form id="descriptionForm">
+            <div class="form-group">
+                <label for="songTitle">Enter the song title:</label>
+                <input type="text" id="songTitle" name="songTitle" required>
+            </div>
+
+            <div class="form-group">
+                <label for="voicePersona">Enter your voice persona or name:</label>
+                <input type="text" id="voicePersona" name="voicePersona" required>
+            </div>
+
+            <div class="form-group">
+                <label for="originalArtist">Enter the original artist:</label>
+                <input type="text" id="originalArtist" name="originalArtist" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Generate Description">
+            </div>
+        </form>
+        <div id="descriptionOutput"></div>
+    </main>
+    <script src="descriptionGenerator.js"></script>
+</body>
+</html>
