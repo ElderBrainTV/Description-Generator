@@ -61,7 +61,9 @@ document.addEventListener('DOMContentLoaded', function() {
         May your auditory canals be always open to the music of the spheres.
         
         Remember, you are under the ever-watchful gaze of the Elder Brain. Embrace the sounds of the universe.
-        
+
+        DISCLAMER: This song was made using RVC Technology. It is NOT "AI generated". Please learn what RVC is before commenting about the use of AI.
+
         Until our paths converge again,
         ElderBrainTV`;
         
