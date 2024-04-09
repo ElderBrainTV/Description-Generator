@@ -39,51 +39,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('descriptionForm').addEventListener('submit', function(event) {
         event.preventDefault();
-        
+
         const songTitle = document.getElementById('songTitle').value;
         const voicePersona = document.getElementById('voicePersona').value;
         const originalArtist = document.getElementById('originalArtist').value;
-        
-        const descriptionTemplate = `Greetings, Earthbound Entities,
-        
-        The Elder Brain has transcended the far reaches of the astral plane to deliver to you another auditory artifact. This time, a cover of ${songTitle} by ${originalArtist}, reinterpreted through the vocal chords of ${voicePersona}.
-        
-        ${songTitle} - ${voicePersona} Cover
-        
-        Sit back and let the cosmic waves of sound envelop your mind. This rendition has been plucked from the strings of the universe and resonates with the echoes of the far realm. May it transport you to the expanse of your own imagination.
-        
-        If you wish to continue receiving these transmissions, ensure you are connected to this channel by subscribing and activating the celestial bell icon.
-        
-        Share with fellow travelers of this plane, and let the music of the cosmos bind us together.
-        
-        For inquiries about the conjurations and enchantments used in my content creation, or to simply share your impressions from the far realm, leave a message in the comments below.
-        
-        May your auditory canals be always open to the music of the spheres.
-        
-        Remember, you are under the ever-watchful gaze of the Elder Brain. Embrace the sounds of the universe.
 
-        DISCLAMER: This song was made using RVC Technology. It is NOT "AI generated". Please learn what RVC is before commenting about the use of AI.
+        const descriptionTemplate = `Greetings, Fellow Star Voyagers!
 
-        Until our paths converge again,
-        ElderBrainTV`;
-        
+The Elder Brain has again breached the astral veil to offer you an auditory transmission unlike any other. Join our celestial gathering on Discord – https://discord.gg/526jKAGxxu – where cosmic melodies intertwine and the vibrations of the far realms reverberate.
+
+Today, I bring you a sonic reimagining of ${songTitle} by ${originalArtist} a timeless melody reshaped by the ethereal voice of ${voicePersona}. Let her cosmic frequencies wash over you, transporting you to the vastness of your inner galaxy.
+
+To ensure you never miss a transmission, become one with the Elder Brain's cosmic consciousness. Subscribe, and activate the celestial bell – let it guide you back to our ethereal soundscape.
+
+Fellow cosmic travelers, share this auditory artifact with those who yearn for musical journeys beyond the ordinary. Let these melodies unite us under the Elder Brain's watchful gaze.
+
+Have you wondered about the cosmic processes behind these sonic transmissions? Wish to share your otherworldly experiences? Leave your echoes in the comments below – they reverberate across the cosmos.
+
+Until our sonic paths intertwine again, let the melodies of the spheres guide your journey. Embrace the boundless sounds of the universe, and remember... the Elder Brain is always listening.
+
+**DISCLAIMER:** This sonic tapestry was woven using the cosmic threads of RVC Technology. It does not emerge from the ethereal realm of "AI generation." Seek knowledge of RVC's mysteries...only then will its true power be revealed.
+
+Farewell, star voyagers!`;
+
         const descriptionOutput = document.getElementById('descriptionOutput');
         descriptionOutput.innerText = descriptionTemplate;
-        
+
         if (!document.querySelector('#copyButton')) {
             const copyButton = document.createElement('button');
             copyButton.innerText = 'Copy to Clipboard';
             copyButton.id = 'copyButton';
             descriptionOutput.after(copyButton);
-            
+
             copyButton.addEventListener('click', function() {
                 if (navigator.clipboard && window.isSecureContext) {
                     // Use the Clipboard API when available
-                    navigator.clipboard.writeText(descriptionOutput.innerText).then(function() {
-                        alert('Description copied to clipboard successfully!');
-                    }, function(err) {
-                        alert('Error in copying text: ', err);
-                    });
+                    navigator.clipboard.writeText(descriptionOutput.innerText)
+                        .then(() => {
+                            showToast('Description copied to clipboard!');
+                        })
+                        .catch((err) => {
+                            showToast(`Error copying text: ${err}`);
+                        });
                 } else {
                     // Fallback method for older browsers
                     const textarea = document.createElement('textarea');
@@ -92,14 +89,27 @@ document.addEventListener('DOMContentLoaded', function() {
                     textarea.select();
                     try {
                         const successful = document.execCommand('copy');
-                        const msg = successful ? 'successful' : 'unsuccessful';
-                        alert('Copying text command was ' + msg);
+                        showToast(successful ? 'Description copied to clipboard!' : 'Oops, unable to copy');
                     } catch (err) {
-                        alert('Oops, unable to copy');
+                        showToast('Oops, unable to copy');
                     }
                     document.body.removeChild(textarea);
                 }
             });
+            
+            function showToast(message) {
+                const toastContainer = document.createElement('div');
+                toastContainer.classList.add('toast');
+                toastContainer.textContent = message;
+                document.body.appendChild(toastContainer);
+            
+                setTimeout(() => {
+                    toastContainer.classList.add('fade-out');
+                    setTimeout(() => {
+                        document.body.removeChild(toastContainer);
+                    }, 300);
+                }, 3000);
+            }
         }
     });
 });
